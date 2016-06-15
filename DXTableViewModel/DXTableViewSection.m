@@ -246,7 +246,11 @@
 {
     NSMutableArray *indexPaths = [NSMutableArray array];
     for (DXTableViewRow *aRow in rows) {
-        [indexPaths addObject:[self removeRow:aRow]];
+        NSIndexPath *indexPath = [self indexPathForRow:aRow];
+        [indexPaths addObject:indexPath];
+    }
+    for (DXTableViewRow *aRow in rows) {
+        [self removeRow:aRow];
     }
     [self.tableViewModel.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation];
 }
