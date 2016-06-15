@@ -216,10 +216,11 @@
 - (void)insertRows:(NSArray *)rows afterRow:(DXTableViewRow *)row withRowAnimation:(UITableViewRowAnimation)animation
 {
     NSMutableArray *indexPaths = [NSMutableArray array];
+    DXTableViewRow* rowToInsertAfter = row;
     for (DXTableViewRow *aRow in rows) {
-        // TODO: insert whole array at once, inserting element by element changes the order
-        if (nil != row) {
-            [indexPaths addObject:[self insertRow:aRow afterRow:row]];
+        if (nil != rowToInsertAfter) {
+            [indexPaths addObject:[self insertRow:aRow afterRow:rowToInsertAfter]];
+            rowToInsertAfter = aRow;
         } else {
             [indexPaths addObject:[self insertRow:aRow atIndex:self.numberOfRows]];
         }
